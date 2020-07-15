@@ -27,22 +27,22 @@ function managerInfo (){
         .prompt ([
             {
                 type: "input",
-                name: "manName",
+                name: "name",
                 message: "manager name?"
             }
             {
                 type: "input",
-                name: "manID",
+                name: "iD",
                 message: "manager id?"
             }
             {
                 type: "input",
-                name: "manEmail",
+                name: "email",
                 message: "manager email?"
             }
             {
                 type: "input",
-                name: "manOffice",
+                name: "office",
                 message: "manager office number?"
             }
         ])
@@ -58,17 +58,20 @@ function managerInfo (){
         })
 }
 
+// would you like to add a team member
 function  newTeam (){
+    // running inquierer in node
     inquirer
         .prompt([
         {
             type: "list",
             name: "command",
             message: "add team memeber?"
-            choices: ["Engineer", "Intern", "Manager", "Create Team"]
+            choices: ["Engineer", "Intern", "Create Team"]
         }
 
     ])
+    // options for statement.  what role would someone select?
     .then(memAnswers => {
         switch(statement){
             case "Engineer":
@@ -79,11 +82,12 @@ function  newTeam (){
                 newIntern();
                 break;
             
-            case "Manager":
-                managerInfo ();
-                break;
+                // should I add this for multiple managers? 
+            // case "Manager":
+            //     managerInfo ();
+            //     break;
 
-            case "Create Team"; 
+            case "Create Team": 
                 createTeam();
                 break;
 
@@ -93,14 +97,83 @@ function  newTeam (){
     )
 }
 
-function newEngineer(){}
 
-function newIntern(){}
+// If new engineer sleected
+function newEngineer(){
+    inquirer
+    .prompt ([
+        {
+            type: "input",
+            name: "name",
+            message: "engineer name?"
+        },
+        {
+            type: "input",
+            name: "iD",
+            message: "engineer id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "engineer email?"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "engineer github?"
+        }
+    ])
+    .then(engAnswers => {
+        var { name, id, email, github} = engAnswers;
+        var engineer = Engineer(name, email, github);
+        createTeam.push(engineer);
+        }
+
+    )
+
+
+}
+
+// If new Intern is selected
+function newIntern(){
+    inquirer
+    .prompt ([
+        {
+            type: "input",
+            name: "name",
+            message: "intern name?"
+        },
+        {
+            type: "input",
+            name: "iD",
+            message: "intern id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "intern email?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "intern school?"
+        }
+    ])
+    .then(intAnswers =>{
+        var {name, id, email, school} = intAnswers;
+        var intern = Intern(name, id, email, school);
+
+    })
+
+}
 
 // will this work? 
-managerInfo()
+// managerInfo()
 
-function createTeam(){}
+// to create where 
+function createTeam(){
+    fs.writeFileSync(outputPath, mainRender(newMember), "utf-8");
+}
 
 managerInfo()
 
