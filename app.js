@@ -75,7 +75,7 @@ function manager (){
             },
             {
                 type: "input",
-                name: "manOffice",
+                name: "officeNumber",
                 message: "manager office number?"
             }
         ])
@@ -83,7 +83,7 @@ function manager (){
             let manName = response.manName;
             let manID = response.manID;
             let manEmail = response.manEmail;
-            let manOffice = response.manOffice;
+            let officeNumber = response.officeNumber;
 
 
 
