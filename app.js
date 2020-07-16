@@ -61,33 +61,33 @@ function manager (){
             {
                 type: "input",
                 name: "manName",
-                message: "manager name?"
+                message: "What is the manager's name?"
             },
             {
                 type: "input",
                 name: "manID",
-                message: "manager id?"
+                message: "What is the manager's id?"
             },
             {
                 type: "input",
                 name: "manEmail",
-                message: "manager email?"
+                message: "What is the manager's email?"
             },
             {
                 type: "input",
                 name: "officeNumber",
-                message: "manager office number?"
+                message: "What is the manager's office number?"
             }
         ])
         .then(function(response) {
-            let manName = response.manName;
-            let manID = response.manID;
-            let manEmail = response.manEmail;
-            let officeNumber = response.officeNumber;
+            var manName = response.manName;
+            var manID = response.manID;
+            var manEmail = response.manEmail;
+            var officeNumber = response.officeNumber;
 
 
 
-            let manager = new Manager (
+            var manager = new Manager (
                 manName,
                 manID,
                 manEmail,
@@ -154,31 +154,31 @@ function engineer(){
         {
             type: "input",
             name: "engName",
-            message: "engineer name?"
+            message: "What is the engineer's name?"
         },
         {
             type: "input",
             name: "engID",
-            message: "engineer id?"
+            message: "What is the engineer's id?"
         },
         {
             type: "input",
             name: "engEmail",
-            message: "engineer email?"
+            message: "What is the engineer's email?"
         },
         {
             type: "input",
             name: "engGithub",
-            message: "engineer github URL?"
+            message: "What is the engineer's github URL?"
         }
     ])
         .then(function(response) {
-            let engName = response.engName;
-            let engID = response.engID;
-            let engEmail = response.engEmail;
-            let engGithub = response.engGithub;
+            var engName = response.engName;
+            var engID = response.engID;
+            var engEmail = response.engEmail;
+            var engGithub = response.engGithub;
 
-            let engineer = new Engineer (
+            var engineer = new Engineer (
                 engName,
                 engID,
                 engEmail,
@@ -210,33 +210,33 @@ function intern(){
         {
             type: "input",
             name: "intName",
-            message: "intern name?"
+            message: "What is the intern's name?"
         },
         {
             type: "input",
             name: "intID",
-            message: "intern id?"
+            message: "What is the intern's id?"
         },
         {
             type: "input",
             name: "intEmail",
-            message: "intEmail?"
+            message: "What is the intern's Email?"
         },
         {
             type: "input",
             name: "intSchool",
-            message: "intern school?"
+            message: "What is the intern's school?"
         }
       ])
 
 
         .then(function(response) {
-            let intName = response.intName;
-            let intID = response.intID;
-            let intEmail = response.intEmail;
-            let intSchool = response.intSchool;
+            var intName = response.intName;
+            var intID = response.intID;
+            var intEmail = response.intEmail;
+            var intSchool = response.intSchool;
 
-            let intern = new Intern (
+            var intern = new Intern (
                 intName,
                 intID,
                 intEmail,
@@ -260,7 +260,7 @@ function intern(){
 // will this work? 
 // managerInfo()
 
-// to create where 
+// to create or append output directory
 function createTeam(){
     if(!fs.existsSync(OUTPUT_DIR)){
         fs.mkdirSync(OUTPUT_DIR)
