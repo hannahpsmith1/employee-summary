@@ -26,20 +26,20 @@ function newMember() {
         {
         type:"list",
         message: "What kind of employee are you adding?",
-        name: "createdEmployee",
+        name: "newEmployee",
         choices: ["Manager", "Engineer", "Intern", "Done"]
         },
     ])
-    .then(teamMember => {
-        switch(teamMember.createdEmployee) {
+    .then(newMembers => {
+        switch(newMembers.newEmployee) {
             case "Engineer":
-                engineer();
+                engineerInfo();
                 break;
             case "Manager":
-                manager();
+                managerInfo();
                 break;
             case "Intern":
-                intern();
+                internInfo();
                 break;
             case "Done":
                 createTeam();
@@ -96,7 +96,7 @@ function managerInfo (){
             // var manager = Manager(manName, manID, manEmail, manOffice);
 
             newMembers.push(manager);
-            newTeam();
+            newMember();
 
 
 
@@ -128,9 +128,10 @@ function  newTeam (){
                 break;
             
                 // should I add this for multiple managers? 
-            // case "Manager":
-            //     managerInfo ();
-            //     break;
+                // commenting back in yes for multiple managers 
+            case "Manager":
+                managerInfo ();
+                break;
 
             case "Create Team": 
                 createTeam();
@@ -144,34 +145,54 @@ function  newTeam (){
 
 
 // If new engineer sleected
-function newEngineer(){
+function engineerInfo(){
     inquirer
     .prompt ([
         {
             type: "input",
-            name: "name",
+            name: "engName",
             message: "engineer name?"
         },
         {
             type: "input",
-            name: "iD",
+            name: "engID",
             message: "engineer id?"
         },
         {
             type: "input",
-            name: "email",
+            name: "engEmail",
             message: "engineer email?"
         },
         {
             type: "input",
-            name: "github",
-            message: "engineer github?"
+            name: "engGithub",
+            message: "engineer github URL?"
         }
     ])
-    .then(engAnswers => {
-        var { name, id, email, github} = engAnswers;
-        var engineer = Engineer(name, email, github);
-        createTeam.push(engineer);
+        .then(function(reponse) {
+            var engName = reponse.engName;
+            var engID = response.engID;
+            var engEmail = reponse.engEmail;
+            var engGithub = response.engGithub;
+
+            var engineer = new Engineer (
+                engName,
+                engID,
+                engEmail,
+                engGithub
+            );
+
+// changed after learning about sub classes
+            // var {manName, manID, manEmail, manOffice } = manAnswers;
+            // var manager = Manager(manName, manID, manEmail, manOffice);
+
+            newMembers.push(engineer);
+            newMember();
+
+        // commenting out now that I know I need it to be more specific for sublcasses
+        // var { engName, engID, engEmail, engGithub} = engAnswers;
+        // var engineer = Engineer(name, email, github);
+        // createTeam.push(engineer);
         }
 
     )
@@ -180,33 +201,54 @@ function newEngineer(){
 }
 
 // If new Intern is selected
-function newIntern(){
+function internInfo(){
     inquirer
     .prompt ([
         {
             type: "input",
-            name: "name",
+            name: "inName",
             message: "intern name?"
         },
         {
             type: "input",
-            name: "iD",
+            name: "intID",
             message: "intern id?"
         },
         {
             type: "input",
             name: "email",
-            message: "intern email?"
+            message: "intEmail?"
         },
         {
             type: "input",
-            name: "school",
+            name: "intSchool",
             message: "intern school?"
         }
     ])
-    .then(intAnswers =>{
-        var {name, id, email, school} = intAnswers;
-        var intern = Intern(name, id, email, school);
+
+
+        .then(function(reponse) {
+            var intName = reponse.intName;
+            var intID = response.intID;
+            var intEmail = reponse.intEmail;
+            var intSchool = response.intSchool;
+
+            var intern = new intern (
+                intName,
+                intID,
+                intEmail,
+                intSchool
+            );
+
+// changed after learning about sub classes
+            // var {manName, manID, manEmail, manOffice } = manAnswers;
+            // var manager = Manager(manName, manID, manEmail, manOffice);
+
+            newMembers.push(intern);
+            newMember();
+
+        // var {name, id, email, school} = intAnswers;
+        // var intern = Intern(name, id, email, school);
 
     })
 
@@ -217,16 +259,21 @@ function newIntern(){
 
 // to create where 
 function createTeam(){
-    fs.writeFileSync(outputPath, mainRender(newMember), "utf-8");
+    if(!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(newMembers), "utf-8");
 }
+// go back to start to create more employees until Done is selected
+newMember();
 
 // managerInfo()
-console.log("tada")
-const Employee = require("./lib/Employee");
+// console.log("tada")
+// const Employee = require("./lib/Employee");
 
-console.log(new Employee("joe"))
-console.log(new Employee("martha"))
-// let abc = {}
+// console.log(new Employee("joe"))
+// console.log(new Employee("martha"))
+// let abc = {}node
 // let def = abc 
 
 // Write code to use inquirer to gather information about the development team members,
