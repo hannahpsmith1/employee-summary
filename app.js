@@ -20,6 +20,35 @@ const render = require("./lib/htmlRenderer");
 // where to add new members
 const newMembers = [];
 
+// to add n numbers of team members
+function newMember() {
+    inquirer.prompt([
+        {
+        type:"list",
+        message: "What kind of employee are you adding?",
+        name: "createdEmployee",
+        choices: ["Manager", "Engineer", "Intern", "Done"]
+        },
+    ])
+    .then(teamMember => {
+        switch(teamMember.createdEmployee) {
+            case "Engineer":
+                engineer();
+                break;
+            case "Manager":
+                manager();
+                break;
+            case "Intern":
+                intern();
+                break;
+            case "Done":
+                createTeam();
+                break;
+        }
+    })
+
+}
+
 
 // add manager to team
 function managerInfo (){
@@ -28,28 +57,43 @@ function managerInfo (){
         .prompt ([
             {
                 type: "input",
-                name: "name",
+                name: "manName",
                 message: "manager name?"
             },
             {
                 type: "input",
-                name: "iD",
+                name: "manID",
                 message: "manager id?"
             },
             {
                 type: "input",
-                name: "email",
+                name: "manEmail",
                 message: "manager email?"
             },
             {
                 type: "input",
-                name: "office",
+                name: "manOffice",
                 message: "manager office number?"
             }
         ])
-        .then(manAnswers => {
-            var {manName, manID, manEmail, manOffice } = manAnswers;
-            var manager = Manager(manName, manID, manEmail, manOffice);
+        .then(function(reponse) {
+            var manName = reponse.manName;
+            var manID = response.manID;
+            var manEmail = reponse.manEmail;
+            var manOffice = response.manEamil;
+
+
+
+            var manager = new Manager (
+                manName,
+                manID,
+                manEmail,
+                manOffice
+            );
+
+// changed after learning about sub classes
+            // var {manName, manID, manEmail, manOffice } = manAnswers;
+            // var manager = Manager(manName, manID, manEmail, manOffice);
 
             newMembers.push(manager);
             newTeam();
