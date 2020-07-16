@@ -1,7 +1,7 @@
 # Template Engine - Employee Summary
 
 ## Project Description 
-using node.js create a generator to be able to add any number of managers, engineers, and interns to a team
+using node.js create a generator to be able to add any number and combination of managers, engineers, and interns to a team and render that team in a generated output html page.
 
 ## Deployed Gif and Still Image
 
@@ -31,7 +31,8 @@ using node.js create a generator to be able to add any number of managers, engin
 
 ## Installation 
 
-npm install
+The dependencies are, jest for running the provided tests, and inquirer for collecting input from the user.  
+npm instal
 
 ## Usage 
 
@@ -49,9 +50,12 @@ repository will autopopulate with the values that you get from adding employees 
 
 npm run test
 
-## Questions
 
-none
+## Image of Passed Tests
+
+<img width="1004" alt="Screen Shot 2020-07-15 at 10 23 46 PM" src="https://user-images.githubusercontent.com/59800839/87630433-ecc16b80-c6e9-11ea-9fe7-d028de0e225d.png">
+
+
 
 ## Technologies
 
