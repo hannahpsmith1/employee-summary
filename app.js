@@ -91,7 +91,7 @@ function manager (){
                 manName,
                 manID,
                 manEmail,
-                manOffice
+                officeNumber
             );
 
 // changed after learning about sub classes
@@ -236,7 +236,7 @@ function intern(){
             let intEmail = response.intEmail;
             let intSchool = response.intSchool;
 
-            let intern = new intern (
+            let intern = new Intern (
                 intName,
                 intID,
                 intEmail,
