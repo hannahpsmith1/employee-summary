@@ -26,20 +26,23 @@ function newMember() {
         {
         type:"list",
         message: "What kind of employee are you adding?",
-        name: "newEmployee",
+        name: "addedEmployee",
         choices: ["Manager", "Engineer", "Intern", "Done"]
         },
     ])
     .then(newMembers => {
-        switch(newMembers.newEmployee) {
+        switch(newMembers.addedEmployee) {
+            // case "Engineer":
+            //     engineer;
+            //     break;
             case "Engineer":
-                engineerInfo();
+                engineer();
                 break;
             case "Manager":
-                managerInfo();
+                manager();
                 break;
             case "Intern":
-                internInfo();
+                intern();
                 break;
             case "Done":
                 createTeam();
@@ -51,8 +54,8 @@ function newMember() {
 
 
 // add manager to team
-function managerInfo (){
-
+function manager (){
+ 
     inquirer
         .prompt ([
             {
@@ -76,15 +79,15 @@ function managerInfo (){
                 message: "manager office number?"
             }
         ])
-        .then(function(reponse) {
-            var manName = reponse.manName;
-            var manID = response.manID;
-            var manEmail = reponse.manEmail;
-            var manOffice = response.manEamil;
+        .then(function(response) {
+            let manName = response.manName;
+            let manID = response.manID;
+            let manEmail = response.manEmail;
+            let manOffice = response.manOffice;
 
 
 
-            var manager = new Manager (
+            let manager = new Manager (
                 manName,
                 manID,
                 manEmail,
@@ -100,52 +103,52 @@ function managerInfo (){
 
 
 
-        })
+        });
 }
 
 // would you like to add a team member
-function  newTeam (){
-    // running inquierer in node
-    inquirer
-        .prompt([
-        {
-            type: "list",
-            name: "command",
-            message: "add team memeber?",
-            options: ["Engineer", "Intern", "Create Team"]
-        }
+// function  newEmployee (){
+//     // running inquierer in node
+//     inquirer
+//         .prompt([
+//         {
+//             type: "list",
+//             name: "command",
+//             message: "add team memeber?",
+//             options: ["Engineer", "Intern", "Create Team"]
+//         }
 
-    ])
-    // options for statement.  what role would someone select?
-    .then(memAnswers => {
-        switch(statement){
-            case "Engineer":
-                newEngineer();
-                break;
+//     ])
+//     // options for statement.  what role would someone select?
+//     .then(memAnswers => {
+//         switch(statement){
+//             case "Engineer":
+//                 newEngineer();
+//                 break;
             
-            case "Intern":
-                newIntern();
-                break;
+//             case "Intern":
+//                 newIntern();
+//                 break;
             
-                // should I add this for multiple managers? 
-                // commenting back in yes for multiple managers 
-            case "Manager":
-                managerInfo ();
-                break;
+//                 // should I add this for multiple managers? 
+//                 // commenting back in yes for multiple managers 
+//             case "Manager":
+//                 managerInfo ();
+//                 break;
 
-            case "Create Team": 
-                createTeam();
-                break;
+//             case "Create Team": 
+//                 createTeam();
+//                 break;
 
-        }
-    }
+//         }
+//     }
 
-    )
-}
+//     )
+// }
 
 
 // If new engineer sleected
-function engineerInfo(){
+function engineer(){
     inquirer
     .prompt ([
         {
@@ -169,13 +172,13 @@ function engineerInfo(){
             message: "engineer github URL?"
         }
     ])
-        .then(function(reponse) {
-            var engName = reponse.engName;
-            var engID = response.engID;
-            var engEmail = reponse.engEmail;
-            var engGithub = response.engGithub;
+        .then(function(response) {
+            let engName = response.engName;
+            let engID = response.engID;
+            let engEmail = response.engEmail;
+            let engGithub = response.engGithub;
 
-            var engineer = new Engineer (
+            let engineer = new Engineer (
                 engName,
                 engID,
                 engEmail,
@@ -193,20 +196,20 @@ function engineerInfo(){
         // var { engName, engID, engEmail, engGithub} = engAnswers;
         // var engineer = Engineer(name, email, github);
         // createTeam.push(engineer);
-        }
 
-    )
+
+            });
 
 
 }
 
 // If new Intern is selected
-function internInfo(){
+function intern(){
     inquirer
-    .prompt ([
+      .prompt ([
         {
             type: "input",
-            name: "inName",
+            name: "intName",
             message: "intern name?"
         },
         {
@@ -216,7 +219,7 @@ function internInfo(){
         },
         {
             type: "input",
-            name: "email",
+            name: "intEmail",
             message: "intEmail?"
         },
         {
@@ -224,16 +227,16 @@ function internInfo(){
             name: "intSchool",
             message: "intern school?"
         }
-    ])
+      ])
 
 
-        .then(function(reponse) {
-            var intName = reponse.intName;
-            var intID = response.intID;
-            var intEmail = reponse.intEmail;
-            var intSchool = response.intSchool;
+        .then(function(response) {
+            let intName = response.intName;
+            let intID = response.intID;
+            let intEmail = response.intEmail;
+            let intSchool = response.intSchool;
 
-            var intern = new intern (
+            let intern = new intern (
                 intName,
                 intID,
                 intEmail,
